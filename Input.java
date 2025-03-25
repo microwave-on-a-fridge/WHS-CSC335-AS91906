@@ -3,7 +3,7 @@
  * Class to handle different kinds of input.
  *
  * @Amy Hina
- * @2025-03-24
+ * @2025-03-26
  */
 
 import java.util.Scanner;
@@ -33,6 +33,6 @@ public class Input {
     public static boolean yesNoInput (String yesNoText) {
         Scanner keyboard = new Scanner(System.in);
         final String[] YES_NO_INPUTS = {"yes", "y", "no", "n"};
-        return(false);
+        return(false); // finish this
     }
 }
