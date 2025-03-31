@@ -3,7 +3,7 @@
  * Main class for my AS91906 project.
  *
  * @Amy Hina
- * @2025-03-26
+ * @2025-03-31
  */
 
 /**
@@ -14,9 +14,7 @@
  */
 
 public class main {
-    public static void openAccount() {
-        //Account account = new Account();
-        
+    public static void closeAccount() {
         
     }
     
@@ -36,13 +34,14 @@ public class main {
             System.out.println("W: Withdraw from an account");
             System.out.println("Q: Quit");
 
-            option = Input.menu(MENU_OPTS);
+            option = Input.menu("", MENU_OPTS);
 
             switch (option) {
                 case "o": // open account
-                    openAccount();
+                    //Bank.createAccount(new Account());
                     break;
                 case "c": // close account
+                    closeAccount();
                     break;
                 case "g": // get balance
                     break;

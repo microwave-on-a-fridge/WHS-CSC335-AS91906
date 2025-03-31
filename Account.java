@@ -3,7 +3,7 @@
  * Class to create accounts and deal with accounts stuff.
  *
  * @Amy Hina
- * @2025-03-26
+ * @2025-03-31
  */
 
 import java.util.Random;
@@ -35,7 +35,7 @@ public class Account {
         this.name = name;
     }
     
-    public void setaAddress(String address) {
+    public void setAddress(String address) {
         this.address = address;
     }
     

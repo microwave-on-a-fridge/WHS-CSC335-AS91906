@@ -9,7 +9,7 @@
 import java.util.Scanner;
 
 public class Input {
-    public static String menu(String[] MENU_OPTS) {
+    public static String menu(String textPrompt, String[] MENU_OPTS) {
         Scanner keyboard = new Scanner(System.in);
         String command = "";
         boolean found = false;
@@ -30,7 +30,27 @@ public class Input {
         return(command);
     }
     
-    public static boolean yesNoInput (String yesNoText) {
+    public static String string(String textPrompt, int stringLength) {
+        Scanner keyboard = new Scanner(System.in);
+        String input = "";
+        System.out.println(textPrompt);
+        while (input.equals("") || input.length() > stringLength) {
+            input = keyboard.nextLine();
+        }
+        return(input);
+    }
+    
+    public static int integer(String textPrompt, int intLength) {
+        Scanner keyboard = new Scanner(System.in);
+        int input = -1;
+        System.out.println(textPrompt);
+        while (input == -1 || input > intLength || input <= 0) {
+            input = keyboard.nextInt();
+        }
+        return(input);
+    }
+    
+    public static boolean yesNoInput (String textPrompt) {
         Scanner keyboard = new Scanner(System.in);
         final String[] YES_NO_INPUTS = {"yes", "y", "no", "n"};
         return(false); // finish this
