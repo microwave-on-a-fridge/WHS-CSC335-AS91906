@@ -19,7 +19,7 @@ public class Account {
         // idk this makes it not error out who knows
     }
     
-    public Account(String name, int accountNumber, String address, String type, int balance) {
+    public Account(String name, String address, String type, int balance) {
         Random random = new Random();
         final int accountNumberLength = 8;
         

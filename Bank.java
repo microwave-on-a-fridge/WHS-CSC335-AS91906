@@ -9,18 +9,14 @@
 import java.util.ArrayList;
 
 public class Bank {
-    ArrayList<Account> accounts = new ArrayList<Account>();
+    private ArrayList<Account> accounts = new ArrayList<Account>();
 
-    
-    /**
-     * Constructor for objects of class Bank
-     */
     public Bank() {
-        
+        //this.accounts.add(new Account());
     }
     
     public void createAccount(Account account) {
-        final String[] accountTypes = {"Everyday", "Savings", "Current"};
+        final String[] accountTypes = {"everyday", "savings", "current"};
         
         this.accounts.add(account);
         

@@ -23,6 +23,8 @@ public class main {
 
         String option;
         boolean running = true;
+        
+        Bank bank = new Bank();
 
         while (running) {
             System.out.println("Kawaii-Bank Online Banking");
@@ -38,7 +40,9 @@ public class main {
 
             switch (option) {
                 case "o": // open account
-                    //Bank.createAccount(new Account());
+                    Account account = new Account();
+                    bank.createAccount(account);
+                    //createAccount();
                     break;
                 case "c": // close account
                     closeAccount();
@@ -57,4 +61,3 @@ public class main {
         }
     }
 }
-
