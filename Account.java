@@ -3,32 +3,42 @@
  * Class to create accounts and deal with accounts stuff.
  *
  * @Amy Hina
- * @2025-03-31
+ * @2025-04-01
  */
 
 import java.util.Random;
 
 public class Account {
     private String name;
-    private int accountNumber;
+    private String accountNumber;
     private String address;
     private String type;
-    private int balance;
+    private double balance;
     
     public Account() {
         // idk this makes it not error out who knows
     }
     
-    public Account(String name, String address, String type, int balance) {
+    public static String accountNumberGenerator() {
         Random random = new Random();
-        final int accountNumberLength = 8;
+        final int ACCOUNT_NUMBER_LENGTH = 99999999;
+        final int ACCOUNT_NUMBER_LENGTH_BOTTOM = 1000000;
+        final String ACCOUNT_NUMBER_PREFIX = "38";
         
+        int accountNumberMain = random.nextInt(ACCOUNT_NUMBER_LENGTH) + ACCOUNT_NUMBER_LENGTH_BOTTOM;
+        
+        String accountNumber = ACCOUNT_NUMBER_PREFIX + "-" + accountNumberMain;
+        
+        return(accountNumber);
+    }
+    
+    public Account(String name, String address, String type) {
         this.name = name;
         this.address = address;
         this.type = type;
-        this.balance = balance;
         
-        this.accountNumber = random.nextInt(accountNumberLength);
+        this.accountNumber = accountNumberGenerator();
+        this.balance = 0;
     }
     
     public void setName(String name) {
@@ -43,7 +53,27 @@ public class Account {
         this.type = type;
     }
     
-    public void setBalance(int balance) {
+    public void setBalance(double balance) {
         this.balance = balance;
+    }
+    
+    public String getName() {
+        return(this.name);
+    }
+    
+    public String getAccountNumber() {
+        return(this.accountNumber);
+    }
+    
+    public String getAddress() {
+        return(this.address);
+    }
+    
+    public String getType() {
+        return(this.type);
+    }
+    
+    public double getBalance() {
+        return(this.balance);
     }
 }

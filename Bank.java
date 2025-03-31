@@ -3,7 +3,7 @@
  * Class to hold the accounts in.
  *
  * @Amy Hina
- * @2025-03-31
+ * @2025-04-01
  */
 
 import java.util.ArrayList;
@@ -15,20 +15,26 @@ public class Bank {
         //this.accounts.add(new Account());
     }
     
-    public void createAccount(Account account) {
-        final String[] accountTypes = {"everyday", "savings", "current"};
-        
-        this.accounts.add(account);
+    public void createAccount() {
+        final String[] ACCOUNT_TYPES = {"everyday", "savings", "current"};
         
         String name = Input.string("Please input an account name! (less than 20 characters)", 20);
-        //int accountNumber = Input.integer("Please input an account name! (less than 20 characters)", 20);
         String address = Input.string("Please input an address!", 100);
-        String type = Input.menu("Please choose an account type!", accountTypes);
-        //int balance = Input.integer("Please input an account name! (less than 20 characters)", 20);
+        String type = Input.menu("Please choose an account type!", ACCOUNT_TYPES);
         
-        
-        account.setName(name);
-        account.setAddress(address);
-        account.setType(type);
+        this.accounts.add(new Account(name, address, type));        
+    }
+    
+    // mainly for debugging
+    public void printAccounts() {
+        for (Account account : accounts) {
+            System.out.println(account);
+            System.out.println(account.getName());
+            System.out.println(account.getAccountNumber());
+            System.out.println(account.getAddress());
+            System.out.println(account.getType());
+            System.out.println(account.getBalance());
+            System.out.println();
+        }
     }
 }

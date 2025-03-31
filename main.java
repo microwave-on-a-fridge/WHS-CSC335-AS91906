@@ -3,7 +3,7 @@
  * Main class for my AS91906 project.
  *
  * @Amy Hina
- * @2025-03-31
+ * @2025-04-01
  */
 
 /**
@@ -14,13 +14,9 @@
  */
 
 public class main {
-    public static void closeAccount() {
-        
-    }
-    
     public static void main(String args[]) {
-        final String[] MENU_OPTS = {"o", "c", "g", "d", "w", "q"};
-
+        final String[] MENU_OPTS = {"o", "c", "g", "d", "w", "i", "q"};
+        
         String option;
         boolean running = true;
         
@@ -34,24 +30,25 @@ public class main {
             System.out.println("G: Get balance of an account");
             System.out.println("D: Deposit into an account");
             System.out.println("W: Withdraw from an account");
+            System.out.println("I: Display account info");
             System.out.println("Q: Quit");
 
             option = Input.menu("", MENU_OPTS);
 
             switch (option) {
                 case "o": // open account
-                    Account account = new Account();
-                    bank.createAccount(account);
-                    //createAccount();
+                    bank.createAccount();
                     break;
                 case "c": // close account
-                    closeAccount();
                     break;
                 case "g": // get balance
                     break;
                 case "d": // deposit
                     break;
                 case "w": // withdraw
+                    break;
+                case "i": // account info
+                    bank.printAccounts();
                     break;
                 case "q": // quit
                     System.out.println("Goodbye");

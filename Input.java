@@ -3,7 +3,7 @@
  * Class to handle different kinds of input.
  *
  * @Amy Hina
- * @2025-03-26
+ * @2025-04-01
  */
 
 import java.util.Scanner;
@@ -15,7 +15,7 @@ public class Input {
         boolean found = false;
 
         while (!found) {
-            System.out.println("What would you like to do?");
+            System.out.println(textPrompt);
             command = keyboard.nextLine();
             command=command.toLowerCase();
             for (int i=0; i<MENU_OPTS.length; i++) {
@@ -44,8 +44,18 @@ public class Input {
         Scanner keyboard = new Scanner(System.in);
         int input = -1;
         System.out.println(textPrompt);
-        while (input == -1 || input > intLength || input <= 0) {
+        while (input == -1 || input > intLength || input < 0) {
             input = keyboard.nextInt();
+        }
+        return(input);
+    }
+    
+    public static double doub(String textPrompt, int intLength) {
+        Scanner keyboard = new Scanner(System.in);
+        double input = -1;
+        System.out.println(textPrompt);
+        while (input == -1 || input > intLength || input < 0) {
+            input = keyboard.nextDouble();
         }
         return(input);
     }
