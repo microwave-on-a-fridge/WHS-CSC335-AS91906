@@ -3,7 +3,7 @@
  * Class to hold the accounts in.
  *
  * @Amy Hina
- * @2025-04-01
+ * @2025-04-02
  */
 
 import java.util.ArrayList;
@@ -25,19 +25,49 @@ public class Bank {
         this.accounts.add(new Account(name, address, type));        
     }
     
-    public void closeAccount() {
+    public int accountSelector() {
         System.out.println("Accounts:");
         for (int i=0; i<accounts.size(); i++) {
             System.out.println(i+1 + ". " + accounts.get(i).getName());
         }
         
-        int toRemove = Input.integer("Please choose an account to close.", accounts.size()) - 1;
+        int selection = Input.integer("Please choose an account to close.", accounts.size()) - 1;
 
+        return(selection);
+    }
+    
+    public void closeAccount() {
+        int toRemove = accountSelector();
         boolean confirmation = Input.yesNo("Are you sure you want to remove " + toRemove + 1 + "? (y/N)", false);
         if (confirmation) {
             accounts.remove(toRemove);
         } else {
             System.out.println("Account not deleted.");
+        }
+    }
+    
+    public void checkBalance() {
+        int account = accountSelector();
+        System.out.println(accounts.get(account).getBalance());
+    }
+    
+    public void deposit() {
+        int account = accountSelector();
+        double toAdd = Input.doub("Please specify an amount to deposit.", 5000);
+        double oldMoney = accounts.get(account).getBalance();
+        
+        accounts.get(account).setBalance(oldMoney + toAdd);
+    }
+    
+    public void withdraw() {
+        int account = accountSelector();
+        double toRemove = Input.doub("Please specify an amount to withdraw.", 5000);
+        double oldMoney = accounts.get(account).getBalance();
+        
+        if (toRemove-oldMoney < 0) {
+            System.out.println("Not enough money in account to withdraw that amount.");
+        } else {
+            accounts.get(account).setBalance(oldMoney - toRemove);
         }
     }
     

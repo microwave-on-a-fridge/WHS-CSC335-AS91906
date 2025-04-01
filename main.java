@@ -3,15 +3,11 @@
  * Main class for my AS91906 project.
  *
  * @Amy Hina
- * @2025-04-01
+ * @2025-04-02
  */
 
-/**
- * planning:
- * 
- * this class should be for the menu navigation, which in turn means that
- * it will get used for creating objects like the account object which is what im planning
- */
+// todo: fix y/n for close account, add error message thingy to my input methods, basically
+// just work on my input class cuz that shit is kinda cooked right now
 
 public class main {
     public static void main(String args[]) {
@@ -43,10 +39,13 @@ public class main {
                     bank.closeAccount();
                     break;
                 case "g": // get balance
+                    bank.checkBalance();
                     break;
                 case "d": // deposit
+                    bank.deposit();
                     break;
                 case "w": // withdraw
+                    bank.withdraw();
                     break;
                 case "i": // account info
                     bank.printAccounts();
@@ -54,7 +53,7 @@ public class main {
                 case "q": // quit
                     System.out.println("Goodbye");
                     System.exit(0);
-                    //break;
+                    break;
             }
         }
     }
