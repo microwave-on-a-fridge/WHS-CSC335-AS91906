@@ -40,6 +40,7 @@ public class main {
                     bank.createAccount();
                     break;
                 case "c": // close account
+                    bank.closeAccount();
                     break;
                 case "g": // get balance
                     break;

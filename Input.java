@@ -11,15 +11,15 @@ import java.util.Scanner;
 public class Input {
     public static String menu(String textPrompt, String[] MENU_OPTS) {
         Scanner keyboard = new Scanner(System.in);
-        String command = "";
+        String input = "";
         boolean found = false;
 
         while (!found) {
             System.out.println(textPrompt);
-            command = keyboard.nextLine();
-            command=command.toLowerCase();
+            input = keyboard.nextLine();
+            input=input.toLowerCase();
             for (int i=0; i<MENU_OPTS.length; i++) {
-                if (command.equals(MENU_OPTS[i])) {
+                if (input.equals(MENU_OPTS[i])) {
                     found = true;
                 }
             }
@@ -27,7 +27,30 @@ public class Input {
                 System.out.println("That isn't a valid command!");
             }
         }
-        return(command);
+        return(input);
+    }
+    
+        public static int numCheck(String textPrompt, String[] MENU_OPTS) {
+        Scanner keyboard = new Scanner(System.in);
+        String input = "";
+        int output = -1;
+        boolean found = false;
+
+        while (!found) {
+            System.out.println(textPrompt);
+            input = keyboard.nextLine();
+            input=input.toLowerCase();
+            for (int i=0; i<MENU_OPTS.length; i++) {
+                if (input.equals(MENU_OPTS[i])) {
+                    output = i;
+                    found = true;
+                }
+            }
+            if (!found) {
+                System.out.println("That isn't a valid command!");
+            }
+        }
+        return(output);
     }
     
     public static String string(String textPrompt, int stringLength) {
@@ -60,9 +83,24 @@ public class Input {
         return(input);
     }
     
-    public static boolean yesNoInput (String textPrompt) {
+    public static boolean yesNo (String textPrompt, boolean defaultYes) {
         Scanner keyboard = new Scanner(System.in);
-        final String[] YES_NO_INPUTS = {"yes", "y", "no", "n"};
-        return(false); // finish this
+        final String[] YES_NO_INPUTS = {"yes", "no", "y", "n", ""};
+        System.out.println(textPrompt);
+        int input = numCheck("", YES_NO_INPUTS);
+        
+        // i think there is a nicer way for me to do this but ill figure it out later
+        
+        // actually yeah im pretty sure this just straight up doesnt work ill fix later
+        if (defaultYes && input == YES_NO_INPUTS.length) {
+            return(true);
+        } else if (!defaultYes && input == YES_NO_INPUTS.length) {
+            return(false);
+        }
+        if (input % 2 == 0) {
+            return(true);
+        } else {
+            return(false);
+        }
     }
 }

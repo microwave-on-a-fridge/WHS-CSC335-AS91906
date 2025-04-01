@@ -12,17 +12,33 @@ public class Bank {
     private ArrayList<Account> accounts = new ArrayList<Account>();
 
     public Bank() {
-        //this.accounts.add(new Account());
+        //just let it do its thing
     }
     
     public void createAccount() {
         final String[] ACCOUNT_TYPES = {"everyday", "savings", "current"};
         
-        String name = Input.string("Please input an account name! (less than 20 characters)", 20);
-        String address = Input.string("Please input an address!", 100);
-        String type = Input.menu("Please choose an account type!", ACCOUNT_TYPES);
+        String name = Input.string("Please input an account name (less than 20 characters).", 20);
+        String address = Input.string("Please input an address.", 100);
+        String type = Input.menu("Please choose an account type.", ACCOUNT_TYPES);
         
         this.accounts.add(new Account(name, address, type));        
+    }
+    
+    public void closeAccount() {
+        System.out.println("Accounts:");
+        for (int i=0; i<accounts.size(); i++) {
+            System.out.println(i+1 + ". " + accounts.get(i).getName());
+        }
+        
+        int toRemove = Input.integer("Please choose an account to close.", accounts.size()) - 1;
+
+        boolean confirmation = Input.yesNo("Are you sure you want to remove " + toRemove + 1 + "? (y/N)", false);
+        if (confirmation) {
+            accounts.remove(toRemove);
+        } else {
+            System.out.println("Account not deleted.");
+        }
     }
     
     // mainly for debugging

@@ -19,7 +19,16 @@ public class Account {
         // idk this makes it not error out who knows
     }
     
-    public static String accountNumberGenerator() {
+    public Account(String name, String address, String type) {
+        this.name = name;
+        this.address = address;
+        this.type = type;
+        
+        this.accountNumber = accountNumberGenerator();
+        this.balance = 0;
+    }
+    
+        public static String accountNumberGenerator() {
         Random random = new Random();
         final int ACCOUNT_NUMBER_LENGTH = 99999999;
         final int ACCOUNT_NUMBER_LENGTH_BOTTOM = 1000000;
@@ -30,15 +39,6 @@ public class Account {
         String accountNumber = ACCOUNT_NUMBER_PREFIX + "-" + accountNumberMain;
         
         return(accountNumber);
-    }
-    
-    public Account(String name, String address, String type) {
-        this.name = name;
-        this.address = address;
-        this.type = type;
-        
-        this.accountNumber = accountNumberGenerator();
-        this.balance = 0;
     }
     
     public void setName(String name) {
