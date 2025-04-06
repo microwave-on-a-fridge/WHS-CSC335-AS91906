@@ -3,20 +3,18 @@
  * Main class for my AS91906 project.
  *
  * @Amy Hina
- * @2025-04-02
+ * @2025-04-03
  */
-
-// todo: fix y/n for close account, add error message thingy to my input methods, basically
-// just work on my input class cuz that shit is kinda cooked right now
 
 public class main {
     public static void main(String args[]) {
-        final String[] MENU_OPTS = {"o", "c", "g", "d", "w", "i", "q"};
+        final String[] MENU_OPTS = {"o", "c", "g", "d", "w", "i", "q"};//, "y"};
         
         String option;
         boolean running = true;
         
         Bank bank = new Bank();
+        bank.readCSV("bankData.csv");
 
         while (running) {
             System.out.println("Kawaii-Bank Online Banking");
@@ -51,9 +49,19 @@ public class main {
                     bank.printAccounts();
                     break;
                 case "q": // quit
-                    System.out.println("Goodbye");
+                    // run whatever method i make to print the total info stuff
+                    //System.out.println("Goodbye");
+                    bank.writeCSV("bankData.csv");
                     System.exit(0);
                     break;
+                /*    
+                case "y": //testing the fucked y/n method
+                    boolean test = Input.yesNo("test", true);
+                    if (test) {
+                        System.out.println("true/yes");
+                    } else {
+                        System.out.println("false/no");
+                    }*/
             }
         }
     }

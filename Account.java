@@ -15,20 +15,30 @@ public class Account {
     private String type;
     private double balance;
     
-    public Account() {
+    /*public Account() {
         // idk this makes it not error out who knows
-    }
+    }*/
     
-    public Account(String name, String address, String type) {
+    
+    // this is for making new accounts
+    public Account(String name, String address, String type) { 
         this.name = name;
+        this.accountNumber = accountNumberGenerator();
         this.address = address;
         this.type = type;
-        
-        this.accountNumber = accountNumberGenerator();
         this.balance = 0;
     }
     
-        public static String accountNumberGenerator() {
+    // this is for loading pre-existing accounts from a csv
+    public Account(String name, String accountNumber, String address, String type, double balance) {
+        this.name = name;
+        this.accountNumber = accountNumber;
+        this.address = address;
+        this.type = type;
+        this.balance = balance;
+    }
+    
+    public static String accountNumberGenerator() {
         Random random = new Random();
         final int ACCOUNT_NUMBER_LENGTH = 99999999;
         final int ACCOUNT_NUMBER_LENGTH_BOTTOM = 1000000;

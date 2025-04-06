@@ -3,7 +3,7 @@
  * Class to handle different kinds of input.
  *
  * @Amy Hina
- * @2025-04-02
+ * @2025-04-06
  */
 
 import java.util.Scanner;
@@ -13,7 +13,7 @@ public class Input {
         Scanner keyboard = new Scanner(System.in);
         String input = "";
         boolean found = false;
-
+        
         while (!found) {
             System.out.println(textPrompt);
             input = keyboard.nextLine();
@@ -24,7 +24,7 @@ public class Input {
                 }
             }
             if (!found) {
-                System.out.println("That isn't a valid command!");
+                System.out.println("Invalid input.");
             }
         }
         return(input);
@@ -47,7 +47,7 @@ public class Input {
                 }
             }
             if (!found) {
-                System.out.println("That isn't a valid command!");
+                System.out.println("Invalid input.");
             }
         }
         return(output);
@@ -57,8 +57,43 @@ public class Input {
         Scanner keyboard = new Scanner(System.in);
         String input = "";
         System.out.println(textPrompt);
-        while (input.equals("") || input.length() > stringLength) {
+        boolean found = false;
+        while (!found) {
             input = keyboard.nextLine();
+            if (input.equals("")) {
+                System.out.println("Please enter something.");
+            } else if (input.length() > stringLength) {
+                System.out.println("Too long, please enter something less than " + stringLength + " characters long.");
+            } else {
+                found = true;
+            }
+        }
+        return(input);
+    }
+    
+    public static String stringNoChar(String textPrompt, int stringLength, String[] illegal) {
+        Scanner keyboard = new Scanner(System.in);
+        String input = "";
+        System.out.println(textPrompt);
+        boolean found = false;
+        boolean duplicate = false;
+        while (!found) {
+            input = keyboard.nextLine();
+            if (input.equals("")) {
+                System.out.println("Please enter something.");
+            } else if (input.length() > stringLength) {
+                System.out.println("Too long, please enter something less than " + stringLength + " characters long.");
+            } else {
+                for (int i=0; i<illegal.length; i++) {
+                    if (input.contains(illegal[i])) {
+                        duplicate = true;
+                        System.out.println("Please make sure your input does not contain \"" + illegal[i] + "\".");
+                    }
+                }
+                if (!duplicate) {
+                    found = true;
+                }
+            }
         }
         return(input);
     }
@@ -83,7 +118,9 @@ public class Input {
         return(input);
     }
     
-    public static boolean yesNo (String textPrompt, boolean defaultYes) {
+    
+    // plz fix
+    public static boolean yesNo (String textPrompt, boolean defaultValue) {
         Scanner keyboard = new Scanner(System.in);
         final String[] YES_NO_INPUTS = {"yes", "no", "y", "n", ""};
         System.out.println(textPrompt);
@@ -92,12 +129,17 @@ public class Input {
         // i think there is a nicer way for me to do this but ill figure it out later
         
         // actually yeah im pretty sure this just straight up doesnt work ill fix later
-        if (defaultYes && input == YES_NO_INPUTS.length) {
+        /*System.out.println(YES_NO_INPUTS.length);
+        System.out.println(input);
+        System.out.println(defaultValue);
+        System.out.println(YES_NO_INPUTS.length-1);*/
+        if (defaultValue == true && input == YES_NO_INPUTS.length-1) {
+            //System.out.println("Default");
             return(true);
-        } else if (!defaultYes && input == YES_NO_INPUTS.length) {
+        } else if (!defaultValue && input == YES_NO_INPUTS.length-1) {
+            //System.out.println("Default");
             return(false);
-        }
-        if (input % 2 == 0) {
+        } else if (input % 2 == 0) {
             return(true);
         } else {
             return(false);
