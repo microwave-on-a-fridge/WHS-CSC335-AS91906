@@ -3,7 +3,7 @@
  * Class to handle different kinds of input.
  *
  * @Amy Hina
- * @2025-04-06
+ * @2025-04-07
  */
 
 import java.util.Scanner;
@@ -118,26 +118,14 @@ public class Input {
         return(input);
     }
     
-    
-    // plz fix
     public static boolean yesNo (String textPrompt, boolean defaultValue) {
         Scanner keyboard = new Scanner(System.in);
         final String[] YES_NO_INPUTS = {"yes", "no", "y", "n", ""};
         System.out.println(textPrompt);
         int input = numCheck("", YES_NO_INPUTS);
-        
-        // i think there is a nicer way for me to do this but ill figure it out later
-        
-        // actually yeah im pretty sure this just straight up doesnt work ill fix later
-        /*System.out.println(YES_NO_INPUTS.length);
-        System.out.println(input);
-        System.out.println(defaultValue);
-        System.out.println(YES_NO_INPUTS.length-1);*/
         if (defaultValue == true && input == YES_NO_INPUTS.length-1) {
-            //System.out.println("Default");
             return(true);
         } else if (!defaultValue && input == YES_NO_INPUTS.length-1) {
-            //System.out.println("Default");
             return(false);
         } else if (input % 2 == 0) {
             return(true);

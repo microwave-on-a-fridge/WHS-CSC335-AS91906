@@ -3,7 +3,7 @@
  * Class to create accounts and deal with accounts stuff.
  *
  * @Amy Hina
- * @2025-04-01
+ * @2025-04-07
  */
 
 import java.util.Random;
@@ -14,11 +14,6 @@ public class Account {
     private String address;
     private String type;
     private double balance;
-    
-    /*public Account() {
-        // idk this makes it not error out who knows
-    }*/
-    
     
     // this is for making new accounts
     public Account(String name, String address, String type) { 

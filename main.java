@@ -3,12 +3,17 @@
  * Main class for my AS91906 project.
  *
  * @Amy Hina
- * @2025-04-03
+ * @2025-04-07
+ */
+
+/**
+ * todo: add the total information to be printed at program close, and maybe optional
+ * configuration options n stuff
  */
 
 public class main {
     public static void main(String args[]) {
-        final String[] MENU_OPTS = {"o", "c", "g", "d", "w", "i", "q"};//, "y"};
+        final String[] MENU_OPTS = {"o", "c", "g", "d", "w", "i", "q"};
         
         String option;
         boolean running = true;
@@ -54,14 +59,6 @@ public class main {
                     bank.writeCSV("bankData.csv");
                     System.exit(0);
                     break;
-                /*    
-                case "y": //testing the fucked y/n method
-                    boolean test = Input.yesNo("test", true);
-                    if (test) {
-                        System.out.println("true/yes");
-                    } else {
-                        System.out.println("false/no");
-                    }*/
             }
         }
     }

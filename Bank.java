@@ -3,7 +3,7 @@
  * Class to hold the accounts in.
  *
  * @Amy Hina
- * @2025-04-06
+ * @2025-04-07
  */
 
 import java.util.ArrayList;
@@ -25,7 +25,6 @@ public class Bank {
         final String[] illegal = {","};
         String name = Input.stringNoChar("Please input an account name (less than 20 characters).", 20, illegal);
         String address = Input.stringNoChar("Please input an address.", 100, illegal);
-        // i read online that its better to use %n than \n for newlines in a print statement
         String type = Input.menu("Please choose an account type from the following:\nEveryday\nSavings\nCurrent", ACCOUNT_TYPES);
 
         this.accounts.add(new Account(name, address, type));        
@@ -129,6 +128,8 @@ public class Bank {
                 writer.write(account.getAddress() + ",");
                 writer.write(account.getType() + ",");
                 writer.write(account.getBalance() + ",");
+                writer.flush();
+                writer.close();
             }
         } catch (IOException e) {
             System.err.println("Error writing CSV: " + e.getMessage());
