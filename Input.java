@@ -13,7 +13,7 @@ public class Input {
         Scanner keyboard = new Scanner(System.in);
         String input = "";
         boolean found = false;
-        
+
         while (!found) {
             System.out.println(textPrompt);
             input = keyboard.nextLine();
@@ -29,8 +29,8 @@ public class Input {
         }
         return(input);
     }
-    
-        public static int numCheck(String textPrompt, String[] MENU_OPTS) {
+
+    public static int numCheck(String textPrompt, String[] MENU_OPTS) {
         Scanner keyboard = new Scanner(System.in);
         String input = "";
         int output = -1;
@@ -52,7 +52,7 @@ public class Input {
         }
         return(output);
     }
-    
+
     public static String string(String textPrompt, int stringLength) {
         Scanner keyboard = new Scanner(System.in);
         String input = "";
@@ -72,7 +72,7 @@ public class Input {
         }
         return(input);
     }
-    
+
     public static String stringNoChar(String textPrompt, int stringLength, String[] illegal) {
         Scanner keyboard = new Scanner(System.in);
         String input = "";
@@ -102,47 +102,57 @@ public class Input {
         }
         return(input);
     }
-    
+
     public static int integer(String textPrompt, int intLength) {
         Scanner keyboard = new Scanner(System.in);
         int input = -1;
         boolean found = false;
         System.out.println(textPrompt);
         while (!found) {
-            input = keyboard.nextInt();
-            if (input == -1) {
-                System.out.println("Please enter something.");
-                keyboard.next();
-            } else if (input > intLength) {
-                System.out.println("Too big, please enter something less than " + intLength);
-                keyboard.next();
+            if (keyboard.hasNextInt()) {
+                input = keyboard.nextInt();
+                if (input == -1) {
+                    System.out.println("Please enter something.");
+                    keyboard.next();
+                } else if (input > intLength) {
+                    System.out.println("Too big, please enter something less than " + intLength + ".");
+                    keyboard.next();
+                } else {
+                    found = true;
+                }
             } else {
-                found = true;
+                System.out.println("Please enter a valid number.");
+                keyboard.next();
             }
         }
         return(input);
     }
-    
+
     public static double doub(String textPrompt, int doubleLength) {
         Scanner keyboard = new Scanner(System.in);
         double input = -1;
         boolean found = false;
         System.out.println(textPrompt);
         while (!found) {
-            input = keyboard.nextDouble();
-            if (input == -1) {
-                System.out.println("Please enter something.");
-                keyboard.next();
-            } else if (input > doubleLength) {
-                System.out.println("Too big, please enter something less than " + doubleLength);
-                keyboard.next();
+            if (keyboard.hasNextDouble()) {
+                input = keyboard.nextDouble();
+                if (input == -1) {
+                    System.out.println("Please enter something.");
+                    keyboard.next();
+                } else if (input > doubleLength) {
+                    System.out.println("Too big, please enter something less than " + doubleLength + ".");
+                    keyboard.next();
+                } else {
+                    found = true;
+                }
             } else {
-                found = true;
+                System.out.println("Please enter a valid number.");
+                keyboard.next();
             }
         }
         return(input);
     }
-    
+
     public static boolean yesNo (String textPrompt, boolean defaultValue) {
         Scanner keyboard = new Scanner(System.in);
         final String[] YES_NO_INPUTS = {"yes", "no", "y", "n", ""};

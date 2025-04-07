@@ -6,14 +6,7 @@
  * @2025-04-07
  */
 
-/**
- * I WOULD BE COMMITTING THIS TO MY REPO AT MIDNIGHT ON APRIL THE 7TH
- * BUT MY INTERNET IS SO FUCKING BAD RIGHT NOW IT WONT LET GITHUB LOAD
- * AND GIT CLI ISNT WORKING EITHER SO I LITERALLY CANT FUCKING COMMIT
- * THIS UNTIL HOPEFULLY IT LETS ME IN THE MORNING I JUST WANT TO SLEEP
- * 
- * FUCK
- */
+// currently testing, if have time support 2 csv arguments
 
 public class main {
     public static void main(String args[]) {
@@ -70,11 +63,10 @@ public class main {
                     bank.printAccounts();
                     break;
                 case "q": // quit
-                    // run whatever method i make to print the total info stuff
-                    //System.out.println("Goodbye");
                     System.out.println("Total money in bank: $" + bank.getTotalMoney());
                     System.out.println("Net deposits/withdrawals: $" + bank.getTotalDifference());
                     bank.writeCSV(csv);
+                    System.out.println("Shutting down...");
                     System.exit(0);
                     break;
             }

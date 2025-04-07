@@ -33,6 +33,7 @@ public class Account {
         this.balance = balance;
     }
     
+    // to generate an account number, but should redo this
     public static String accountNumberGenerator() {
         Random random = new Random();
         final int ACCOUNT_NUMBER_LENGTH = 99999999;
@@ -45,6 +46,8 @@ public class Account {
         
         return(accountNumber);
     }
+    
+    // setters
     
     public void setName(String name) {
         this.name = name;
@@ -61,6 +64,8 @@ public class Account {
     public void setBalance(double balance) {
         this.balance = balance;
     }
+    
+    // getters
     
     public String getName() {
         return(this.name);

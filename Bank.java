@@ -78,6 +78,7 @@ public class Bank {
     }
 
     public void withdraw() {
+        final double OVERDRAFT = 1000;
         int account = accountSelector();
         if (account == -1) {
             System.out.println("There are no accounts to withdraw from.");
@@ -85,12 +86,12 @@ public class Bank {
             double toRemove = Input.doub("Please specify an amount to withdraw.", 5000);
             double oldMoney = accounts.get(account).getBalance();
             // do testing on this
-            if (accounts.get(account).getType().equals("Current") && toRemove-oldMoney < 1000) {
-                System.out.println("Overdraft cannot go over $1000");
-            } else if (accounts.get(account).getType().equals("Current") && toRemove-oldMoney >= 1000) {
+            if (accounts.get(account).getType().equals("current") && toRemove-oldMoney >= OVERDRAFT) {
+                System.out.println("Overdraft cannot go over $" + OVERDRAFT + ".");
+            } else if (accounts.get(account).getType().equals("current") && toRemove-oldMoney < OVERDRAFT) {
                 accounts.get(account).setBalance(oldMoney - toRemove);
                 totalDifference -= toRemove;
-            } else if (toRemove-oldMoney < 0) {
+            } else if (toRemove-oldMoney > 0) {
                 System.out.println("Not enough money in account to withdraw that amount.");
             } else {
                 accounts.get(account).setBalance(oldMoney - toRemove);
