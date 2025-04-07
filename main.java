@@ -7,20 +7,18 @@
  */
 
 /**
- * todo: add the total information to be printed at program close, and maybe optional
- * configuration options n stuff
+ * I WOULD BE COMMITTING THIS TO MY REPO AT MIDNIGHT ON APRIL THE 7TH
+ * BUT MY INTERNET IS SO FUCKING BAD RIGHT NOW IT WONT LET GITHUB LOAD
+ * AND GIT CLI ISNT WORKING EITHER SO I LITERALLY CANT FUCKING COMMIT
+ * THIS UNTIL HOPEFULLY IT LETS ME IN THE MORNING I JUST WANT TO SLEEP
  * 
- * fuarrkkkkk and i need to switch address and acc number in the ordering cuz i didnt
- * look at the csv properly cuz im dumb - done that
- * 
- * i also want to make the program accept command line arguments to customize the csv to use
- * if i have time for it - done that
+ * FUCK
  */
 
 public class main {
     public static void main(String args[]) {
         final String[] MENU_OPTS = {"o", "c", "g", "d", "w", "i", "q"};
-        String csv; // = "bankData.csv";
+        String csv;
         String option;
         boolean running = true;
         
@@ -74,8 +72,8 @@ public class main {
                 case "q": // quit
                     // run whatever method i make to print the total info stuff
                     //System.out.println("Goodbye");
-                    bank.calculator();
                     System.out.println("Total money in bank: $" + bank.getTotalMoney());
+                    System.out.println("Net deposits/withdrawals: $" + bank.getTotalDifference());
                     bank.writeCSV(csv);
                     System.exit(0);
                     break;

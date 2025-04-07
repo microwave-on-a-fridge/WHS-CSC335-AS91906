@@ -29,7 +29,7 @@ public class Account {
         this.name = name;
         this.address = address;
         this.accountNumber = accountNumber;
-        this.type = type;
+        this.type = type.toLowerCase();
         this.balance = balance;
     }
     

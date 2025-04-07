@@ -17,7 +17,7 @@ public class Input {
         while (!found) {
             System.out.println(textPrompt);
             input = keyboard.nextLine();
-            input=input.toLowerCase();
+            input = input.toLowerCase();
             for (int i=0; i<MENU_OPTS.length; i++) {
                 if (input.equals(MENU_OPTS[i])) {
                     found = true;
@@ -39,7 +39,7 @@ public class Input {
         while (!found) {
             System.out.println(textPrompt);
             input = keyboard.nextLine();
-            input=input.toLowerCase();
+            input = input.toLowerCase();
             for (int i=0; i<MENU_OPTS.length; i++) {
                 if (input.equals(MENU_OPTS[i])) {
                     output = i;
@@ -62,8 +62,10 @@ public class Input {
             input = keyboard.nextLine();
             if (input.equals("")) {
                 System.out.println("Please enter something.");
+                keyboard.next();
             } else if (input.length() > stringLength) {
                 System.out.println("Too long, please enter something less than " + stringLength + " characters long.");
+                keyboard.next();
             } else {
                 found = true;
             }
@@ -81,13 +83,16 @@ public class Input {
             input = keyboard.nextLine();
             if (input.equals("")) {
                 System.out.println("Please enter something.");
+                keyboard.next();
             } else if (input.length() > stringLength) {
                 System.out.println("Too long, please enter something less than " + stringLength + " characters long.");
+                keyboard.next();
             } else {
                 for (int i=0; i<illegal.length; i++) {
                     if (input.contains(illegal[i])) {
                         duplicate = true;
                         System.out.println("Please make sure your input does not contain \"" + illegal[i] + "\".");
+                        keyboard.next();
                     }
                 }
                 if (!duplicate) {
@@ -107,8 +112,10 @@ public class Input {
             input = keyboard.nextInt();
             if (input == -1) {
                 System.out.println("Please enter something.");
+                keyboard.next();
             } else if (input > intLength) {
                 System.out.println("Too big, please enter something less than " + intLength);
+                keyboard.next();
             } else {
                 found = true;
             }
@@ -125,8 +132,10 @@ public class Input {
             input = keyboard.nextDouble();
             if (input == -1) {
                 System.out.println("Please enter something.");
+                keyboard.next();
             } else if (input > doubleLength) {
                 System.out.println("Too big, please enter something less than " + doubleLength);
+                keyboard.next();
             } else {
                 found = true;
             }

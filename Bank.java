@@ -14,7 +14,8 @@ import java.io.IOException;
 
 public class Bank {
     private ArrayList<Account> accounts = new ArrayList<Account>();
-    private double totalMoney;
+    private double totalMoney = 0;
+    private double totalDifference = 0;
 
     public void createAccount() {
         final String[] ACCOUNT_TYPES = {"everyday", "savings", "current"};
@@ -22,18 +23,6 @@ public class Bank {
         String name = Input.stringNoChar("Please input an account name (less than 20 characters).", 20, illegal);
         String address = Input.stringNoChar("Please input an address.", 100, illegal);
         String type = Input.menu("Please choose an account type from the following:\nEveryday\nSavings\nCurrent", ACCOUNT_TYPES);
-        // how to capitalize the first letter of the type idk
-        switch (type) {
-            case "everyday":
-                type = "Everyday";
-                break;
-            case "savings":
-                type = "Savings";
-                break;
-            case "current":
-                type = "Current";
-                break;
-        }
         this.accounts.add(new Account(name, address, type));        
     }
 
@@ -46,7 +35,7 @@ public class Bank {
             System.out.println(i+1 + ". " + accounts.get(i).getName());
         }
 
-        int selection = Input.integer("Please choose an account to close.", accounts.size()) - 1;
+        int selection = Input.integer("Please choose an account.", accounts.size()) - 1;
 
         return(selection);
     }
@@ -84,6 +73,7 @@ public class Bank {
             double oldMoney = accounts.get(account).getBalance();
 
             accounts.get(account).setBalance(oldMoney + toAdd);
+            totalDifference += toAdd;
         }
     }
 
@@ -99,10 +89,12 @@ public class Bank {
                 System.out.println("Overdraft cannot go over $1000");
             } else if (accounts.get(account).getType().equals("Current") && toRemove-oldMoney >= 1000) {
                 accounts.get(account).setBalance(oldMoney - toRemove);
+                totalDifference -= toRemove;
             } else if (toRemove-oldMoney < 0) {
                 System.out.println("Not enough money in account to withdraw that amount.");
             } else {
                 accounts.get(account).setBalance(oldMoney - toRemove);
+                totalDifference -= toRemove;
             }
         }
     }
@@ -121,14 +113,15 @@ public class Bank {
         }
     }
     
-    public void calculator() {
+    public double getTotalMoney() {
         for (Account account : accounts) {
             totalMoney = totalMoney + account.getBalance();
         }
+        return(totalMoney);
     }
     
-    public double getTotalMoney() {
-        return(totalMoney);
+    public double getTotalDifference() {
+        return(totalDifference);
     }
     
     /*
@@ -144,9 +137,8 @@ public class Bank {
             while (reader.hasNextLine()) {
                 String line = reader.nextLine();
                 String[] separated = line.split(",");
-                double balance = Double.parseDouble(separated[4]);
                 // there has to be a better way to do this
-                this.accounts.add(new Account(separated[0], separated[1], separated[2], separated[3], balance));
+                this.accounts.add(new Account(separated[0], separated[1], separated[2], separated[3], Double.parseDouble(separated[4])));
             }
         } catch (IOException e) {
             System.err.println("Error reading CSV: " + e.getMessage());
