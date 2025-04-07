@@ -15,10 +15,6 @@ import java.io.IOException;
 public class Bank {
     private ArrayList<Account> accounts = new ArrayList<Account>();
     private double totalMoney;
-    
-    public Bank() {
-        //just let it do its thing
-    }
 
     public void createAccount() {
         final String[] ACCOUNT_TYPES = {"everyday", "savings", "current"};
@@ -26,7 +22,18 @@ public class Bank {
         String name = Input.stringNoChar("Please input an account name (less than 20 characters).", 20, illegal);
         String address = Input.stringNoChar("Please input an address.", 100, illegal);
         String type = Input.menu("Please choose an account type from the following:\nEveryday\nSavings\nCurrent", ACCOUNT_TYPES);
-
+        // how to capitalize the first letter of the type idk
+        switch (type) {
+            case "everyday":
+                type = "Everyday";
+                break;
+            case "savings":
+                type = "Savings";
+                break;
+            case "current":
+                type = "Current";
+                break;
+        }
         this.accounts.add(new Account(name, address, type));        
     }
 
@@ -87,13 +94,41 @@ public class Bank {
         } else {
             double toRemove = Input.doub("Please specify an amount to withdraw.", 5000);
             double oldMoney = accounts.get(account).getBalance();
-
-            if (toRemove-oldMoney < 0) {
+            // do testing on this
+            if (accounts.get(account).getType().equals("Current") && toRemove-oldMoney < 1000) {
+                System.out.println("Overdraft cannot go over $1000");
+            } else if (accounts.get(account).getType().equals("Current") && toRemove-oldMoney >= 1000) {
+                accounts.get(account).setBalance(oldMoney - toRemove);
+            } else if (toRemove-oldMoney < 0) {
                 System.out.println("Not enough money in account to withdraw that amount.");
             } else {
                 accounts.get(account).setBalance(oldMoney - toRemove);
             }
         }
+    }
+    
+    public void printAccounts() {
+        for (int i=0; i<accounts.size(); i++) {
+            Account account = accounts.get(i);
+            System.out.println(i+1 + ".");
+            //System.out.println("Java ID: " + account);
+            System.out.println("Name: " + account.getName());
+            System.out.println("Address: " + account.getAddress());
+            System.out.println("Account number: " + account.getAccountNumber());
+            System.out.println("Account type: " + account.getType());
+            System.out.println("Account balance: $" + account.getBalance());
+            System.out.println();
+        }
+    }
+    
+    public void calculator() {
+        for (Account account : accounts) {
+            totalMoney = totalMoney + account.getBalance();
+        }
+    }
+    
+    public double getTotalMoney() {
+        return(totalMoney);
     }
     
     /*
@@ -124,28 +159,15 @@ public class Bank {
             FileWriter writer = new FileWriter(csvFile);
             for (Account account : accounts) {
                 writer.write(account.getName() + ",");
-                writer.write(account.getAccountNumber() + ",");
                 writer.write(account.getAddress() + ",");
+                writer.write(account.getAccountNumber() + ",");
                 writer.write(account.getType() + ",");
-                writer.write(account.getBalance() + ",");
-                writer.flush();
-                writer.close();
+                writer.write(account.getBalance() + "\n");
             }
+            writer.flush();
+            writer.close();
         } catch (IOException e) {
             System.err.println("Error writing CSV: " + e.getMessage());
-        }
-    }
-
-    // mainly for debugging
-    public void printAccounts() {
-        for (Account account : accounts) {
-            System.out.println(account);
-            System.out.println(account.getName());
-            System.out.println(account.getAccountNumber());
-            System.out.println(account.getAddress());
-            System.out.println(account.getType());
-            System.out.println(account.getBalance());
-            System.out.println();
         }
     }
 }

@@ -101,9 +101,17 @@ public class Input {
     public static int integer(String textPrompt, int intLength) {
         Scanner keyboard = new Scanner(System.in);
         int input = -1;
+        boolean found = false;
         System.out.println(textPrompt);
-        while (input == -1 || input > intLength || input < 0) {
+        while (!found) {
             input = keyboard.nextInt();
+            if (input == -1) {
+                System.out.println("Please enter something.");
+            } else if (input > intLength) {
+                System.out.println("Too big, please enter something less than " + intLength);
+            } else {
+                found = true;
+            }
         }
         return(input);
     }
@@ -111,9 +119,17 @@ public class Input {
     public static double doub(String textPrompt, int doubleLength) {
         Scanner keyboard = new Scanner(System.in);
         double input = -1;
+        boolean found = false;
         System.out.println(textPrompt);
-        while (input == -1 || input > doubleLength || input < 0) {
+        while (!found) {
             input = keyboard.nextDouble();
+            if (input == -1) {
+                System.out.println("Please enter something.");
+            } else if (input > doubleLength) {
+                System.out.println("Too big, please enter something less than " + doubleLength);
+            } else {
+                found = true;
+            }
         }
         return(input);
     }

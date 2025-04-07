@@ -10,25 +10,25 @@ import java.util.Random;
 
 public class Account {
     private String name;
-    private String accountNumber;
     private String address;
+    private String accountNumber;
     private String type;
     private double balance;
     
     // this is for making new accounts
     public Account(String name, String address, String type) { 
         this.name = name;
-        this.accountNumber = accountNumberGenerator();
         this.address = address;
+        this.accountNumber = accountNumberGenerator();
         this.type = type;
         this.balance = 0;
     }
     
     // this is for loading pre-existing accounts from a csv
-    public Account(String name, String accountNumber, String address, String type, double balance) {
+    public Account(String name, String address, String accountNumber, String type, double balance) {
         this.name = name;
-        this.accountNumber = accountNumber;
         this.address = address;
+        this.accountNumber = accountNumber;
         this.type = type;
         this.balance = balance;
     }
@@ -66,12 +66,12 @@ public class Account {
         return(this.name);
     }
     
-    public String getAccountNumber() {
-        return(this.accountNumber);
-    }
-    
     public String getAddress() {
         return(this.address);
+    }
+    
+    public String getAccountNumber() {
+        return(this.accountNumber);
     }
     
     public String getType() {

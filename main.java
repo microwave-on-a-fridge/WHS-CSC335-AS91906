@@ -9,17 +9,35 @@
 /**
  * todo: add the total information to be printed at program close, and maybe optional
  * configuration options n stuff
+ * 
+ * fuarrkkkkk and i need to switch address and acc number in the ordering cuz i didnt
+ * look at the csv properly cuz im dumb - done that
+ * 
+ * i also want to make the program accept command line arguments to customize the csv to use
+ * if i have time for it - done that
  */
 
 public class main {
     public static void main(String args[]) {
         final String[] MENU_OPTS = {"o", "c", "g", "d", "w", "i", "q"};
-        
+        String csv; // = "bankData.csv";
         String option;
         boolean running = true;
         
+        // take command line argument for optional different csv to use
+        if (args.length == 1) {
+            System.out.println("Using \"" + args[args.length] + "\" as CSV file.");
+            csv = args[args.length];
+        } else if (args.length > 1) {
+            System.out.println("Too many arguments, please only input one CSV to use.");
+            System.out.println("Falling back to default CSV (bankData.csv).");
+            csv = "bankData.csv";
+        } else {
+            csv = "bankData.csv";
+        }
+        
         Bank bank = new Bank();
-        bank.readCSV("bankData.csv");
+        bank.readCSV(csv);
 
         while (running) {
             System.out.println("Kawaii-Bank Online Banking");
@@ -56,7 +74,9 @@ public class main {
                 case "q": // quit
                     // run whatever method i make to print the total info stuff
                     //System.out.println("Goodbye");
-                    bank.writeCSV("bankData.csv");
+                    bank.calculator();
+                    System.out.println("Total money in bank: $" + bank.getTotalMoney());
+                    bank.writeCSV(csv);
                     System.exit(0);
                     break;
             }
