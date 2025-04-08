@@ -3,32 +3,40 @@
  * Main class for my AS91906 project.
  *
  * @Amy Hina
- * @2025-04-07
+ * @2025-04-08
  */
 
-// currently testing, if have time support 2 csv arguments
+// currently testing, if have time support 2 csv arguments - done, just continue testing
 
 public class main {
     public static void main(String args[]) {
         final String[] MENU_OPTS = {"o", "c", "g", "d", "w", "i", "q"};
-        String csv;
+        String read;
+        String write;
         String option;
         boolean running = true;
         
         // take command line argument for optional different csv to use
         if (args.length == 1) {
             System.out.println("Using \"" + args[args.length] + "\" as CSV file.");
-            csv = args[args.length];
-        } else if (args.length > 1) {
+            read = args[args.length];
+            write = args[args.length];
+        } else if (args.length == 2) {
+            System.out.println("Reading from \"" + args[0] + "\" and writing to \"" + args[1] + "\".");
+            read = args[0];
+            write = args[1];
+        } else if (args.length > 2) {
             System.out.println("Too many arguments, please only input one CSV to use.");
             System.out.println("Falling back to default CSV (bankData.csv).");
-            csv = "bankData.csv";
+            read = "bankData.csv";
+            write = "bankData.csv";
         } else {
-            csv = "bankData.csv";
+            read = "bankData.csv";
+            write = "bankData.csv";
         }
         
         Bank bank = new Bank();
-        bank.readCSV(csv);
+        bank.readCSV(read);
 
         while (running) {
             System.out.println("Kawaii-Bank Online Banking");
@@ -65,7 +73,7 @@ public class main {
                 case "q": // quit
                     System.out.println("Total money in bank: $" + bank.getTotalMoney());
                     System.out.println("Net deposits/withdrawals: $" + bank.getTotalDifference());
-                    bank.writeCSV(csv);
+                    bank.writeCSV(write);
                     System.out.println("Shutting down...");
                     System.exit(0);
                     break;

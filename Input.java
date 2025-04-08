@@ -3,12 +3,13 @@
  * Class to handle different kinds of input.
  *
  * @Amy Hina
- * @2025-04-07
+ * @2025-04-08
  */
 
 import java.util.Scanner;
 
 public class Input {
+    // handle input selecting from an array of options (menu input)
     public static String menu(String textPrompt, String[] MENU_OPTS) {
         Scanner keyboard = new Scanner(System.in);
         String input = "";
@@ -30,6 +31,7 @@ public class Input {
         return(input);
     }
 
+    // check for a number, basically menu input but number instead of item
     public static int numCheck(String textPrompt, String[] MENU_OPTS) {
         Scanner keyboard = new Scanner(System.in);
         String input = "";
@@ -53,6 +55,7 @@ public class Input {
         return(output);
     }
 
+    // simple string input, can specify a max length
     public static String string(String textPrompt, int stringLength) {
         Scanner keyboard = new Scanner(System.in);
         String input = "";
@@ -73,6 +76,7 @@ public class Input {
         return(input);
     }
 
+    // string input but remove illegal characters
     public static String stringNoChar(String textPrompt, int stringLength, String[] illegal) {
         Scanner keyboard = new Scanner(System.in);
         String input = "";
@@ -103,6 +107,7 @@ public class Input {
         return(input);
     }
 
+    // simple integer input
     public static int integer(String textPrompt, int intLength) {
         Scanner keyboard = new Scanner(System.in);
         int input = -1;
@@ -128,6 +133,7 @@ public class Input {
         return(input);
     }
 
+    // simple double input
     public static double doub(String textPrompt, int doubleLength) {
         Scanner keyboard = new Scanner(System.in);
         double input = -1;
@@ -153,6 +159,7 @@ public class Input {
         return(input);
     }
 
+    // yes/no input, if nothing is entered it defaults to the customizable default option
     public static boolean yesNo (String textPrompt, boolean defaultValue) {
         Scanner keyboard = new Scanner(System.in);
         final String[] YES_NO_INPUTS = {"yes", "no", "y", "n", ""};
