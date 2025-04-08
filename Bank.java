@@ -3,7 +3,7 @@
  * Class to hold the accounts in.
  *
  * @Amy Hina
- * @2025-04-08
+ * @2025-04-09
  */
 
 import java.util.ArrayList;
@@ -26,6 +26,7 @@ public class Bank {
         this.accounts.add(new Account(name, address, type));        
     }
 
+    // method for choosing account from an array of accounts
     public int accountSelector() {
         if (accounts.size() <= 0) {
             return(-1);
@@ -40,6 +41,9 @@ public class Bank {
         return(selection);
     }
 
+    // close account method with confirmation feature because accidentally closing smth is bad
+    // thank you game design for teaching me about nielsen heuristics
+    // gotta take those heuristics into account
     public void closeAccount() {
         int toRemove = accountSelector();
         if (toRemove == -1) {
@@ -77,6 +81,7 @@ public class Bank {
         }
     }
 
+    // this is ugly but it works
     public void withdraw() {
         final double OVERDRAFT = 1000;
         int account = accountSelector();
@@ -85,10 +90,10 @@ public class Bank {
         } else {
             double toRemove = Input.doub("Please specify an amount to withdraw.", 5000);
             double oldMoney = accounts.get(account).getBalance();
-            // do testing on this
-            if (accounts.get(account).getType().equals("current") && toRemove-oldMoney >= OVERDRAFT) {
+            
+            if (accounts.get(account).getType().equals("current") && toRemove-oldMoney > OVERDRAFT) { // if account support overdraft but the amount trying to withdraw goes less than -1k, dont
                 System.out.println("Overdraft cannot go over $" + OVERDRAFT + ".");
-            } else if (accounts.get(account).getType().equals("current") && toRemove-oldMoney < OVERDRAFT) {
+            } else if (accounts.get(account).getType().equals("current") && toRemove-oldMoney <= OVERDRAFT) {
                 accounts.get(account).setBalance(oldMoney - toRemove);
                 totalDifference -= toRemove;
             } else if (toRemove-oldMoney > 0) {
@@ -128,8 +133,6 @@ public class Bank {
     /*
      * FILE RELATED THINGS
      */
-    
-    // untested, please do testing on these
     
     public void readCSV(String fileName) {
         File csvFile = new File(fileName);

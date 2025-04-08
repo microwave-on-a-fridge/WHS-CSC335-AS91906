@@ -3,7 +3,7 @@
  * Class to handle different kinds of input.
  *
  * @Amy Hina
- * @2025-04-08
+ * @2025-04-09
  */
 
 import java.util.Scanner;
@@ -82,9 +82,9 @@ public class Input {
         String input = "";
         System.out.println(textPrompt);
         boolean found = false;
-        boolean duplicate = false;
         while (!found) {
             input = keyboard.nextLine();
+            System.out.println(input); // testing
             if (input.equals("")) {
                 System.out.println("Please enter something.");
                 keyboard.next();
@@ -92,15 +92,19 @@ public class Input {
                 System.out.println("Too long, please enter something less than " + stringLength + " characters long.");
                 keyboard.next();
             } else {
+                boolean duplicate = false;
+                int illegalNum = -1;
                 for (int i=0; i<illegal.length; i++) {
                     if (input.contains(illegal[i])) {
+                        illegalNum = i;
                         duplicate = true;
-                        System.out.println("Please make sure your input does not contain \"" + illegal[i] + "\".");
-                        keyboard.next();
                     }
                 }
                 if (!duplicate) {
                     found = true;
+                } else {
+                    System.out.println("Please make sure your input does not contain \"" + illegal[illegalNum] + "\".");
+                    keyboard.nextLine();
                 }
             }
         }
