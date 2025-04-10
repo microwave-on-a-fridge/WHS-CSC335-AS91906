@@ -3,7 +3,7 @@
  * Main class for my AS91906 project.
  *
  * @Amy Hina
- * @2025-04-09
+ * @2025-04-10
  */
 
 public class main {
@@ -24,7 +24,7 @@ public class main {
             read = args[0];
             write = args[1];
         } else if (args.length > 2) {
-            System.out.println("Too many arguments, please only input one CSV to use.");
+            System.out.println("Too many arguments, please input either one CSV or two (one to read from one to write to).");
             System.out.println("Falling back to default CSV (bankData.csv).");
             read = "bankData.csv";
             write = "bankData.csv";
@@ -72,7 +72,7 @@ public class main {
                     System.out.println("Total money in bank: $" + bank.getTotalMoney());
                     System.out.println("Net deposits/withdrawals: $" + bank.getTotalDifference());
                     bank.writeCSV(write);
-                    System.out.println("Shutting down...");
+                    System.out.println("Exiting...");
                     System.exit(0);
                     break;
             }

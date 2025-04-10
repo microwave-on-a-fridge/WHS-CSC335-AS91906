@@ -3,7 +3,7 @@
  * Class to create accounts and deal with accounts stuff.
  *
  * @Amy Hina
- * @2025-04-08
+ * @2025-04-10
  */
 
 import java.util.Random;
@@ -36,30 +36,20 @@ public class Account {
     // to generate an account number, but should redo this
     public static String accountNumberGenerator() {
         Random random = new Random();
-        final int ACCOUNT_NUMBER_LENGTH = 99999999;
-        final int ACCOUNT_NUMBER_LENGTH_BOTTOM = 1000000;
-        final String ACCOUNT_NUMBER_PREFIX = "38";
+        final int ACCOUNT_NUMBER_LENGTH = 9999999;
+        final int ACCOUNT_NUMBER_LENGTH_BOTTOM = 100000;
+        final String ACCOUNT_NUMBER_PREFIX = "08";
         
         int accountNumberMain = random.nextInt(ACCOUNT_NUMBER_LENGTH) + ACCOUNT_NUMBER_LENGTH_BOTTOM;
+        String accountNumberSecond = "010" + random.nextInt(5) + 1;
+        String accountNumberLast = "0" + random.nextInt(3) + 1;
         
-        String accountNumber = ACCOUNT_NUMBER_PREFIX + "-" + accountNumberMain;
+        String accountNumber = ACCOUNT_NUMBER_PREFIX + "-" + accountNumberSecond + "-" + accountNumberMain + "-" + accountNumberLast;
         
         return(accountNumber);
     }
     
-    // setters
-    
-    public void setName(String name) {
-        this.name = name;
-    }
-    
-    public void setAddress(String address) {
-        this.address = address;
-    }
-    
-    public void setType(String type) {
-        this.type = type;
-    }
+    // setters - i only need one for the balance lol
     
     public void setBalance(double balance) {
         this.balance = balance;

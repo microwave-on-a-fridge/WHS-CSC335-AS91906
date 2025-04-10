@@ -3,7 +3,7 @@
  * Class to hold the accounts in.
  *
  * @Amy Hina
- * @2025-04-09
+ * @2025-04-10
  */
 
 import java.util.ArrayList;
@@ -14,6 +14,7 @@ import java.io.IOException;
 
 public class Bank {
     private ArrayList<Account> accounts = new ArrayList<Account>();
+    private final double TRANSACTION_LIMIT = 5000;
     private double totalMoney = 0;
     private double totalDifference = 0;
 
@@ -73,7 +74,7 @@ public class Bank {
         if (account == -1) {
             System.out.println("There are no accounts to deposit to.");
         } else {
-            double toAdd = Input.doub("Please specify an amount to deposit.", 5000);
+            double toAdd = Input.doub("Please specify an amount to deposit.", TRANSACTION_LIMIT);
             double oldMoney = accounts.get(account).getBalance();
 
             accounts.get(account).setBalance(oldMoney + toAdd);
@@ -88,7 +89,7 @@ public class Bank {
         if (account == -1) {
             System.out.println("There are no accounts to withdraw from.");
         } else {
-            double toRemove = Input.doub("Please specify an amount to withdraw.", 5000);
+            double toRemove = Input.doub("Please specify an amount to withdraw.", TRANSACTION_LIMIT);
             double oldMoney = accounts.get(account).getBalance();
             
             if (accounts.get(account).getType().equals("current") && toRemove-oldMoney > OVERDRAFT) { // if account support overdraft but the amount trying to withdraw goes less than -1k, dont
