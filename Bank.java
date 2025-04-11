@@ -7,7 +7,7 @@
  */
 
 import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.Scanner; // for file reading
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -55,7 +55,7 @@ public class Bank {
         if (toRemove == -1) {
             System.out.println("There are no accounts to close.");
         } else {
-            boolean confirmation = Input.yesNo("Are you sure you want to close " + accounts.get(toRemove).getName() + "? (y/N)", false);
+            boolean confirmation = Input.yesNo("Are you sure you want to close account \"" + accounts.get(toRemove).getName() + "\"? (y/N)", false);
             if (confirmation) {
                 Input.clear();
                 System.out.println("Closed account \"" + accounts.get(toRemove).getName() + "\".");

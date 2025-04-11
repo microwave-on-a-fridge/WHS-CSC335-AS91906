@@ -6,7 +6,7 @@
  * @2025-04-11
  */
 
-import java.util.Scanner;
+import java.util.Scanner; // for keyboard input
 
 public class Input {
     /* handle input selecting from an array of options (menu input) */
@@ -166,7 +166,18 @@ public class Input {
         return(input);
     }
 
-    /* yes/no input, if nothing is entered it defaults to the customizable default option */
+    /** 
+     * yes/no input, if nothing is entered it defaults to the customizable default option
+     * e.g. if the prompt is y/N, defaultValue = false, and then if enter is hit without
+     * specifying it will be the defaultValue (in this case, no/false). this was inspired
+     * by the command like programs i use on the daily because lots of them have this
+     * feature which i think is a good thing to add for convenience and usability
+     * 
+     * for the actual functionality, the array is alternating between yes or no options
+     * so that when it runs input % 2 (basically checking if its even or odd), then it can
+     * base what the input is off that. this means if i wanted to i could add more words
+     * that would work in the future, like "yeah" and "nah" (but i dont want to add those)
+     */
     public static boolean yesNo(String textPrompt, boolean defaultValue) {
         Scanner keyboard = new Scanner(System.in);
         final String[] YES_NO_INPUTS = {"yes", "no", "y", "n", ""};

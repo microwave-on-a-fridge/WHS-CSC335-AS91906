@@ -21,7 +21,7 @@ public class main {
             System.out.println("Using \"" + args[0] + "\" as CSV file.");
             read = args[0];
             write = args[0];
-        } else if (args.length == 2) { // if 2 csv are provided, read 1 and write to 2
+        } else if (args.length == 2) { // if 2 csv are provided, read csv 1 and write to csv2
             System.out.println("Reading from \"" + args[0] + "\" and writing to \"" + args[1] + "\".");
             read = args[0];
             write = args[1];
@@ -51,6 +51,7 @@ public class main {
 
             option = Input.menu("", MENU_OPTS);
 
+            /* do different things based on different options */
             switch (option) {
                 case "o": // open account
                     Input.clear();
