@@ -3,7 +3,7 @@
  * Class to create accounts and deal with accounts stuff.
  *
  * @Amy Hina
- * @2025-04-10
+ * @2025-04-11
  */
 
 import java.util.Random;
@@ -15,7 +15,7 @@ public class Account {
     private String type;
     private double balance;
     
-    // this is for making new accounts
+    /* this is for making new accounts */
     public Account(String name, String address, String type) { 
         this.name = name;
         this.address = address;
@@ -24,7 +24,7 @@ public class Account {
         this.balance = 0;
     }
     
-    // this is for loading pre-existing accounts from a csv
+    /* this is for loading pre-existing accounts from a csv */
     public Account(String name, String address, String accountNumber, String type, double balance) {
         this.name = name;
         this.address = address;
@@ -33,7 +33,7 @@ public class Account {
         this.balance = balance;
     }
     
-    // to generate an account number, but should redo this
+    /* to generate an account number, based on the formatting provided in the example CSV */
     public static String accountNumberGenerator() {
         Random random = new Random();
         final int ACCOUNT_NUMBER_LENGTH = 9999999;
@@ -49,13 +49,13 @@ public class Account {
         return(accountNumber);
     }
     
-    // setters - i only need one for the balance lol
+    /* setters - i only need one for the balance lol */
     
     public void setBalance(double balance) {
         this.balance = balance;
     }
     
-    // getters
+    /* getters - hopefully obvious, they return the value of the thing they're getting */
     
     public String getName() {
         return(this.name);

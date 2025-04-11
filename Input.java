@@ -3,13 +3,13 @@
  * Class to handle different kinds of input.
  *
  * @Amy Hina
- * @2025-04-10
+ * @2025-04-11
  */
 
 import java.util.Scanner;
 
 public class Input {
-    // handle input selecting from an array of options (menu input)
+    /* handle input selecting from an array of options (menu input) */
     public static String menu(String textPrompt, String[] MENU_OPTS) {
         Scanner keyboard = new Scanner(System.in);
         String input = "";
@@ -30,7 +30,7 @@ public class Input {
         return(input);
     }
 
-    // check for a number, basically menu input but number instead of item
+    /* check for a number, basically menu input but number instead of item */
     public static int numCheck(String textPrompt, String[] MENU_OPTS) {
         Scanner keyboard = new Scanner(System.in);
         String input = "";
@@ -53,7 +53,7 @@ public class Input {
         return(output);
     }
 
-    // simple string input, can specify a max length
+    /* simple string input, can specify a max length */
     public static String string(String textPrompt, int stringLength) {
         Scanner keyboard = new Scanner(System.in);
         String input = "";
@@ -74,7 +74,7 @@ public class Input {
         return(input);
     }
 
-    // string input but remove illegal characters
+    /* string input but remove illegal characters */
     public static String stringNoChar(String textPrompt, int stringLength, String[] illegal) {
         Scanner keyboard = new Scanner(System.in);
         String input = "";
@@ -82,7 +82,6 @@ public class Input {
         boolean found = false;
         while (!found) {
             input = keyboard.nextLine();
-            System.out.println(input); // testing
             if (input.equals("")) {
                 System.out.println("Please enter something.");
                 keyboard.nextLine();
@@ -109,7 +108,7 @@ public class Input {
         return(input);
     }
 
-    // simple integer input
+    /* simple integer input */
     public static int integer(String textPrompt, int intLength) {
         Scanner keyboard = new Scanner(System.in);
         int input = -1;
@@ -118,11 +117,16 @@ public class Input {
         while (!found) {
             if (keyboard.hasNextInt()) {
                 input = keyboard.nextInt();
-                if (input == -1) {
+                if (input <= 0) {
                     System.out.println("Please enter something.");
                     keyboard.nextLine();
                 } else if (input > intLength) {
-                    System.out.println("Too big, please enter something less than " + intLength + ".");
+                    /** 
+                     * i have tried to keep my input methods non-specific to this project and
+                     * robust so that they can work in various circumstances but i got lazy here
+                     * so heres the only specific namedrop of a bank account related thing in this
+                     */
+                    System.out.println("Account number " + input + " does not exist.");
                     keyboard.nextLine();
                 } else {
                     found = true;
@@ -135,7 +139,7 @@ public class Input {
         return(input);
     }
 
-    // simple double input
+    /* simple double input */
     public static double doub(String textPrompt, double doubleLength) {
         Scanner keyboard = new Scanner(System.in);
         double input = -1;
@@ -144,8 +148,8 @@ public class Input {
         while (!found) {
             if (keyboard.hasNextDouble()) {
                 input = keyboard.nextDouble();
-                if (input == -1) {
-                    System.out.println("Please enter something.");
+                if (input <= 0) {
+                    System.out.println("Please enter a positive number.");
                     keyboard.nextLine();
                 } else if (input > doubleLength) {
                     System.out.println("Too big, please enter something less than " + doubleLength + ".");
@@ -162,8 +166,8 @@ public class Input {
         return(input);
     }
 
-    // yes/no input, if nothing is entered it defaults to the customizable default option
-    public static boolean yesNo (String textPrompt, boolean defaultValue) {
+    /* yes/no input, if nothing is entered it defaults to the customizable default option */
+    public static boolean yesNo(String textPrompt, boolean defaultValue) {
         Scanner keyboard = new Scanner(System.in);
         final String[] YES_NO_INPUTS = {"yes", "no", "y", "n", ""};
         System.out.println(textPrompt);
@@ -177,5 +181,10 @@ public class Input {
         } else {
             return(false);
         }
+    }
+    
+    /* this isn't input obviously but it just feels like the right place to put it */
+    public static void clear() {
+        System.out.print("\u000c"); // clear the screen
     }
 }
